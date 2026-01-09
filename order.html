@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تأكيد الطلب</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="images/777.png">
+    
+ 
+
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Tahoma;
+            background:
+                radial-gradient(circle at top, #00f2ff33, transparent 40%),
+                radial-gradient(circle at bottom, #ff00cc22, transparent 40%),
+                linear-gradient(120deg, #050b12, #0b1220);
+            color: #fff;
+        }
+
+        .order-card {
+            width: 92%;
+            max-width: 520px;
+            padding: 40px;
+            border-radius: 28px;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(22px);
+            box-shadow: 0 30px 80px rgba(0,0,0,.6);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(90deg, #00f2ff, #ff00cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        label { font-size: 13px; color: #aaa; margin-right: 5px; }
+
+        input, textarea {
+            width: 100%;
+            margin-top: 6px;
+            margin-bottom: 18px;
+            padding: 14px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,.4);
+            color: white;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            border-radius: 40px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(90deg, #00f2ff, #ff00cc);
+            transition: 0.3s;
+        }
+
+        button:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(0, 242, 255, 0.4); }
+
+        /* زر العودة الجديد */
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #00f2ff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .back-btn:hover { color: #ff00cc; }
+    </style>
+</head>
+
+<body>
+
+<div class="order-card">
+    <h2>تأكيد الطلب</h2>
+
+    <form action="https://formspree.io/f/mrebndel" method="POST">
+        <label>الاسم الكامل</label>
+        <input type="text" name="name" required>
+
+        <label>رقم الهاتف</label>
+        <input type="tel" name="phone" required>
+
+        <label>العنوان</label>
+        <input type="text" name="address" required>
+
+        <label>محتويات السلة</label>
+        <textarea name="order" id="orderDetails" rows="4" readonly style="color: #00f2ff;"></textarea>
+
+        <button type="submit">🚀 إرسال الطلب عبر الإيميل</button>
+    </form>
+
+    <!-- زر الرجوع الصحيح -->
+    <a href="#" class="back-btn" onclick="history.back()">← العودة إلى السلة</a>
+</div>
+
+
+<script>
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const field = document.getElementById("orderDetails");
+
+    if (cart.length === 0) {
+        field.value = "السلة فارغة حالياً";
+    } else {
+        field.value = cart
+            .map(item => `• ${item.name} (${item.price} دج)`)
+            .join("\n");
+    }
+</script>
+
+
+</body>
+</html>

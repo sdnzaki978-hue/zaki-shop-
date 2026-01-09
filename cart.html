@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>🛒 سلة المشتريات</title>
+
+    <link rel="stylesheet" href="cart.css">
+    <link rel="icon" type="image/png" href="images/777.png">
+</head>
+<body>
+
+<div class="cart-container">
+    <h1>🛒 سلة المشتريات</h1>
+
+    <div id="cart-items" class="cart-items"></div>
+
+    <div class="cart-footer">
+        <p>المجموع: <span id="total">0</span> دج</p>
+        <button onclick="clearCart()" class="clear-btn">إفراغ السلة</button>
+    </div>
+
+    <!-- زر الرجوع الصحيح (لا شاشة بيضاء) -->
+    <a href="#" class="back" onclick="history.back()">⬅️ العودة للتسوق</a>
+</div>
+
+<script src="cart.js"></script>
+
+
+</body>
+</html>
